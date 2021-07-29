@@ -1,0 +1,58 @@
+html,
+body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#white-keyboard {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+.white-key {
+    background-color: #fff;
+    width: 12.5%;
+    height: 100%;
+    border: 2px solid #aaa;
+    box-sizing: border-box;
+}
+.white-key:active {
+    background-color: #ff6;
+}
+#black-keyboard {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    display: flex;
+}
+.black-key {
+    width: 6.25%;
+    height: 100%;
+    background-color: #000;
+}
+.black-key:active {
+    background-color: #ff6;
+}
+#csharp {
+    margin-left: calc(12.5% - 3.125%);
+}
+#dsharp {
+    margin-left: calc(12.5% - 6.25%);
+}
+#fsharp {
+    margin-left: calc(25% - 6.25%);
+}
+#gsharp {
+    margin-left: calc(12.5% - 6.25%);
+}
+#asharp {
+    margin-left: calc(12.5% - 6.25%);
+}
