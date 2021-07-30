@@ -1,5 +1,6 @@
 let note = 440;
-let waveType = "sawtooth";
+let waveType = "triangle";
+let highlightColor = "#30f";
 let notes = {
   c: new p5.Oscillator(523.25, waveType),
   csharp: new p5.Oscillator(554.37, waveType),
@@ -19,7 +20,8 @@ let notesPlaying = [];
 let osc;
 function setup() {
   //osc = new p5.Oscillator("sine");
-  let canvas = createCanvas(0, 0);
+  let canvas = createCanvas(windowWidth, windowHeight/2);
+  background(51);
 }
 function draw() {}
 function keyPressed() {
@@ -27,67 +29,67 @@ function keyPressed() {
   if (keyCode === 81) {
     note = notes.c.start();
     let displayNote = document.getElementById("c");
-    displayNote.style.backgroundColor = "#ff6";
+    displayNote.style.backgroundColor = highlightColor;
   }
   if (keyCode === 50) {
     note = notes.csharp.start();
     let displayNote = document.getElementById("csharp");
-    displayNote.style.backgroundColor = "#ff6";
+    displayNote.style.backgroundColor = highlightColor;
   }
   if (keyCode === 87) {
     note = notes.d.start();
     let displayNote = document.getElementById("d");
-    displayNote.style.backgroundColor = "#ff6";
+    displayNote.style.backgroundColor = highlightColor;
   }
   if (keyCode === 51) {
     note = notes.dsharp.start();
     let displayNote = document.getElementById("dsharp");
-    displayNote.style.backgroundColor = "#ff6";
+    displayNote.style.backgroundColor = highlightColor;
   }
   if (keyCode === 69) {
     note = notes.e.start();
     let displayNote = document.getElementById("e");
-    displayNote.style.backgroundColor = "#ff6";
+    displayNote.style.backgroundColor = highlightColor;
   }
   if (keyCode === 82) {
     note = notes.f.start();
     let displayNote = document.getElementById("f");
-    displayNote.style.backgroundColor = "#ff6";
+    displayNote.style.backgroundColor = highlightColor;
   }
   if (keyCode === 53) {
     note = notes.fsharp.start();
     let displayNote = document.getElementById("fsharp");
-    displayNote.style.backgroundColor = "#ff6";
+    displayNote.style.backgroundColor = highlightColor;
   }
   if (keyCode === 84) {
     note = notes.g.start();
     let displayNote = document.getElementById("g");
-    displayNote.style.backgroundColor = "#ff6";
+    displayNote.style.backgroundColor = highlightColor;
   }
   if (keyCode === 54) {
     note = notes.gsharp.start();
     let displayNote = document.getElementById("gsharp");
-    displayNote.style.backgroundColor = "#ff6";
+    displayNote.style.backgroundColor = highlightColor;
   }
   if (keyCode === 89) {
     note = notes.a.start();
     let displayNote = document.getElementById("a");
-    displayNote.style.backgroundColor = "#ff6";
+    displayNote.style.backgroundColor = highlightColor;
   }
   if (keyCode === 55) {
     note = notes.asharp.start();
     let displayNote = document.getElementById("asharp");
-    displayNote.style.backgroundColor = "#ff6";
+    displayNote.style.backgroundColor = highlightColor;
   }
   if (keyCode === 85) {
     note = notes.b.start();
     let displayNote = document.getElementById("b");
-    displayNote.style.backgroundColor = "#ff6";
+    displayNote.style.backgroundColor = highlightColor;
   }
   if (keyCode === 73) {
     note = notes.c2.start();
     let displayNote = document.getElementById("c2");
-    displayNote.style.backgroundColor = "#ff6";
+    displayNote.style.backgroundColor = highlightColor;
   }
 }
 function keyReleased() {
