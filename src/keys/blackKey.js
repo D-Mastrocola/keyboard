@@ -1,4 +1,4 @@
-class WhiteKey {
+class BlackKey {
   constructor(distance, keyString, freq) {
     this.dist = distance;
     this.keyStr = keyString;
@@ -8,19 +8,29 @@ class WhiteKey {
     this.osc.freq(this.freq, 0.1);
     this.osc.amp(1, 0.1);
     this.ghostNotes = [];
+    this.hold = {
+      holding: false,
+      start: 0,
+      end: 0,
+    };
   }
   draw(keyWidth, keyHeight) {
-    fill(255);
+    fill(0);
     if (this.isDown) fill(255, 150, 0);
     stroke(100);
     strokeWeight(2);
-    rect(this.dist * keyWidth, keyHeight, keyWidth, keyHeight);
-    fill(0);
-    textSize(40);
+    rect(
+      this.dist * keyWidth + keyWidth - keyWidth / 4,
+      keyHeight,
+      keyWidth / 2,
+      keyHeight / 2
+    );
+    fill(255);
+    textSize(20);
     text(
       this.keyStr,
-      this.dist * keyWidth + keyWidth / 2 - 10,
-      windowHeight - 40
+      this.dist * keyWidth + keyWidth - 10,
+      windowHeight / 2 + keyHeight / 2 - 15
     );
   }
   update(keyWidth, keyHeight, keysArray) {
@@ -37,20 +47,17 @@ class WhiteKey {
         this.ghostNotes[this.ghostNotes.length - 1].isHolding !== true
       ) {
         let note = new GhostNote(
-          this.dist * keyWidth,
+          this.dist * keyWidth + (keyWidth / 4) * 3,
           windowHeight / 2,
-          keyWidth
+          keyWidth / 2
         );
         this.ghostNotes.push(note);
       }
-
-      //console.log(this.ghostNotes[this.ghostNotes.length-1])
       this.osc.start();
     } else {
       if (this.ghostNotes.length > 0) {
         this.ghostNotes[this.ghostNotes.length - 1].isHolding = false;
       }
-
       this.osc.stop();
     }
     for (let i = 0; i < this.ghostNotes.length; i++) {

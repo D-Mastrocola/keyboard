@@ -8,8 +8,12 @@ let keyboardString = {
 };
 let keyboardNotes = {
   white: [
-    523.25, 587.33, 659.25, 698.46, 783.99, 880.0, 987.77, 1046.5, 1174.66,
+    261.63, , 293.66 , 329.63, 349.23, 392.00, 440.00, 523.25, 587.33, 659.25, 698.46, 783.99, 880.0, 987.77, 1046.5, 1174.66,
     1318.51, 1396.91, 1567.98, 1760.0, 1975.53,
+  ],
+  black: [
+    554.37, 622.25, 0, 739.99, 830.61, 932.33, 0, 1108.73, 1244.51, 0, 1479.98,
+    1661.22, 1864.66, 0,
   ],
 };
 let keyboard = [];
@@ -19,6 +23,12 @@ for (let i = 0; i < keyboardString.white.length; i++) {
   let key = new WhiteKey(i, keyboardString.white[i], keyboardNotes.white[i]);
   keyboard.push(key);
 }
+for (let i = 0; i < keyboardString.black.length; i++) {
+  if (keyboardString.black[i] !== " ") {
+    let key = new BlackKey(i, keyboardString.black[i], keyboardNotes.black[i]);
+    keyboard.push(key);
+  }
+}
 let keyWidth;
 let keyHeight;
 let notesPlaying = [];
@@ -26,48 +36,28 @@ let osc;
 function setup() {
   keyWidth = windowWidth / keyboardString.white.length;
   keyHeight = windowHeight / 2;
-  
+
   let canvas = createCanvas(windowWidth, windowHeight);
-  background(51);
+  background(0);
 }
 function draw() {
+  background(0);
   //keys
   /*for (let i = 0; i < keyboardString.white.length; i++) {
     drawWhiteKey(i, keyboardString.white[i]);
-  }
-  for (let i = 0; i < keyboardString.black.length; i++) {
-    if (keyboardString.black[i] !== " ") drawBlackKey(i, keyboardString.black[i]);
   }*/
+
   for (let i = 0; i < keyboard.length; i++) {
     keyboard[i].update(keyWidth, keyHeight, keysDown);
   }
 }
-function drawBlackKey(distance, string) {
-  fill(0);
-  noStroke(0);
-  rect(
-    distance * keyWidth + keyWidth - keyWidth / 4,
-    keyHeight,
-    keyWidth / 2,
-    keyHeight / 2
-  );
-}
-function drawWhiteKey(distance, string) {
-  fill(255);
-  stroke(100);
-  strokeWeight(2);
-  rect(distance * keyWidth, keyHeight, keyWidth, keyHeight);
-}
 function keyPressed() {
-  console.log(key);
-  keysDown.push(key)
+  keysDown.push(key);
 }
 function keyReleased() {
-  console.log(key);
-  for(let i = 0; i < keysDown.length; i++) {
-    if(key === keysDown[i]) {
+  for (let i = 0; i < keysDown.length; i++) {
+    if (key === keysDown[i]) {
       keysDown.splice(i, 1);
     }
   }
-  console.log(keysDown)
 }
