@@ -1,12 +1,11 @@
 class WhiteKey {
-  constructor(distance, keyString, freq) {
+  constructor(distance, keyString, freq, wave) {
     this.dist = distance;
     this.keyStr = keyString;
-    this.freq = freq;
     this.isDown = false;
-    this.osc = new p5.Oscillator("sawtooth");
-    this.osc.freq(this.freq, 0.1);
-    this.osc.amp(1, 0.1);
+    this.osc = new p5.Oscillator(freq, wave);
+    this.osc.start();
+    this.osc.amp(0, 0.1);
     this.ghostNotes = [];
   }
   draw(keyWidth, keyHeight) {
@@ -45,13 +44,12 @@ class WhiteKey {
       }
 
       //console.log(this.ghostNotes[this.ghostNotes.length-1])
-      this.osc.start();
+      this.osc.amp(1, 0.1);
     } else {
       if (this.ghostNotes.length > 0) {
         this.ghostNotes[this.ghostNotes.length - 1].isHolding = false;
       }
-
-      this.osc.stop();
+      this.osc.amp(0, 0.1);
     }
     for (let i = 0; i < this.ghostNotes.length; i++) {
       this.ghostNotes[i].update();

@@ -20,12 +20,12 @@ let keyboard = [];
 //create array with key objects
 //Create white keys
 for (let i = 0; i < keyboardString.white.length; i++) {
-  let key = new WhiteKey(i, keyboardString.white[i], keyboardNotes.white[i]);
+  let key = new WhiteKey(i, keyboardString.white[i], keyboardNotes.white[i], waveType);
   keyboard.push(key);
 }
 for (let i = 0; i < keyboardString.black.length; i++) {
   if (keyboardString.black[i] !== " ") {
-    let key = new BlackKey(i, keyboardString.black[i], keyboardNotes.black[i]);
+    let key = new BlackKey(i, keyboardString.black[i], keyboardNotes.black[i], waveType);
     keyboard.push(key);
   }
 }
