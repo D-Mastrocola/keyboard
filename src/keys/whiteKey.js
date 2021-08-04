@@ -7,6 +7,10 @@ class WhiteKey {
     this.osc.start();
     this.osc.amp(0, 0.1);
     this.ghostNotes = [];
+    this.heldLastUpdate = false;
+    this.recording = {
+      
+    }
   }
   draw(keyWidth, keyHeight) {
     fill(255);

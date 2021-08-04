@@ -5,6 +5,7 @@ let keyboardString = {
   white: ["z", "x", "c", "v", "b", "n", "m", "q", "w", "e", "r", "t", "y", "u"],
   black: ["s", "d", " ", "g", "h", "j", " ", "2", "3", " ", "5", "6", "7", " "],
 };
+let recording = false;
 let keyboardNotes = {
   white: [
     261.63,
@@ -98,6 +99,13 @@ function draw() {
     keyboard[i].update(keyWidth, keyHeight, keysDown);
   }
 }
+function record() {
+  let time = millis();
+  for(let i = 0; i < keyboard.length; i++) {
+    keyboard[i].record(time);
+  }
+}
+
 function keyPressed() {
   getAudioContext().resume()
   keysDown.push(key);
