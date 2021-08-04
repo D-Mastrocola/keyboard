@@ -1,4 +1,4 @@
-let waveType = "sine";
+let waveType = "triangle";
 let highlightColor = "#30f";
 let keysDown = [];
 let keyboardString = {
@@ -10,7 +10,6 @@ let keyboardNotes = {
     261.63,
     293.66,
     329.63,
-    ,
     349.23,
     392.0,
     440.0,
@@ -34,9 +33,7 @@ let keyboardNotes = {
     277.18,
     311.13,
     0,
-    ,
     369.99,
-    ,
     415.3,
     466.16,
     0,
@@ -102,6 +99,7 @@ function draw() {
   }
 }
 function keyPressed() {
+  getAudioContext().resume()
   keysDown.push(key);
 }
 function keyReleased() {
