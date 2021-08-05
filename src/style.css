@@ -16,80 +16,19 @@ header {
     justify-content: center;
     align-items: center;
 }
-#white-keyboard {
-    position: absolute;
-    top: 50%;
-    left: 0;
-    width: 100%;
-    height: 50%;
-    display: flex;
+#play-btn {
+    background-color: #aaa;
+    font-size: 1.1em;
+    border: none;
+    border-radius: 4px;
+    margin: 1em;
+    outline: none;
 }
-.white-key {
-    background-color: #fff;
-    width: 6.6%;
-    height: 100%;
-    border: 2px solid #aaa;
-    box-sizing: border-box;
-    color: #000;
-    font-size: 2em;
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-}
-.white-key:active {
-    background-color: #ff6;
-}
-#black-keyboard {
-    position: absolute;
-    top: 50%;
-    left: 0;
-    width: 100%;
-    height: 25%;
-    display: flex;
-}
-.black-key {
-    width: 3.3%;
-    height: 100%;
-    background-color: #000;
-    border: 2px solid #fff;
-    box-sizing: border-box;
-    color: #fff;
-    font-size: 2em;
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-}
-.black-key:active {
-    background-color: #ff6;
-    color: #000;
-}
-#csharp {
-    margin-left: calc(6.6% - 1.65%);
-}
-#dsharp {
-    margin-left: calc(6.6% - 3.3%);
-}
-#fsharp {
-    margin-left: calc(13.2% - 3.3%);
-}
-#gsharp {
-    margin-left: calc(6.6% - 3.3%);
-}
-#asharp {
-    margin-left: calc(6.6% - 3.3%);
-}
-#csharp2 {
-    margin-left: calc(13.2% - 3.3%);
-}
-#dsharp2 {
-    margin-left: calc(6.6% - 3.3%);
-}
-#fsharp2 {
-    margin-left: calc(13.2% - 3.3%);
-}
-#gsharp2 {
-    margin-left: calc(6.6% - 3.3%);
-}
-#asharp2 {
-    margin-left: calc(6.6% - 3.3%);
+#record-btn {
+    background-color: #aaa;
+    font-size: 1.1em;
+    border: none;
+    border-radius: 4px;
+    margin: 1em;
+    outline: none;
 }

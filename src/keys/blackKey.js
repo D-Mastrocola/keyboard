@@ -5,14 +5,12 @@ class BlackKey {
     this.freq = freq;
     this.isDown = false;
     this.osc = new p5.Oscillator(freq, wave);
-    this.osc.start();
     this.osc.amp(0, 0.1);
+    this.osc.start();
     this.ghostNotes = [];
-    this.hold = {
-      holding: false,
-      start: 0,
-      end: 0,
-    };
+    this.recording = {
+      notes: [[0, 0]]
+    }
   }
   draw(keyWidth, keyHeight) {
     fill(0);
@@ -33,7 +31,8 @@ class BlackKey {
       windowHeight / 2 + keyHeight / 2 - 15
     );
   }
-  update(keyWidth, keyHeight, keysArray) {
+  update(keyWidth, keyHeight, keysArray, rec, playback) {
+    let currentTime = millis();
     this.isDown = false;
     for (let i = 0; i < keysArray.length; i++) {
       if (keysArray[i] === this.keyStr) {
@@ -41,7 +40,25 @@ class BlackKey {
         break;
       }
     }
+    if(playback.is) {
+      for(let i = 0; i < this.recording.notes.length; i++) {
+        if(currentTime >= rec.end + playback.start)  {
+          let playButton = document.getElementById('play-btn');
+          playButton.style.backgroundColor = '#aaa';
+          playback.is = false;
+          break
+        }
+        if(this.recording.notes[i][0] + playback.start > currentTime) break;
+        if(this.recording.notes[i][1] + playback.start > currentTime)  {
+          this.isDown = true;
+        }
+      }
+    }
     if (this.isDown) {
+      if(rec.is && this.recording.notes[this.recording.notes.length - 1][1] !== '0') {
+        let newNote = [millis(), '0'];
+        this.recording.notes.push(newNote);
+      }
       if (
         this.ghostNotes.length === 0 ||
         this.ghostNotes[this.ghostNotes.length - 1].isHolding !== true
@@ -55,6 +72,7 @@ class BlackKey {
       }
       this.osc.amp(1, 0.1);
     } else {
+      if(this.recording.notes[this.recording.notes.length - 1][1] === '0') this.recording.notes[this.recording.notes.length - 1][1] = millis();
       if (this.ghostNotes.length > 0) {
         this.ghostNotes[this.ghostNotes.length - 1].isHolding = false;
       }
