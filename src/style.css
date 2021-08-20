@@ -16,6 +16,9 @@ header {
     justify-content: center;
     align-items: center;
 }
+button:hover {
+    cursor: pointer;
+}
 #play-btn {
     background-color: #aaa;
     font-size: 1.1em;
