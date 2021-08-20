@@ -72,11 +72,17 @@ function draw() {
   }
 }
 function record() {
-  let playButton = document.getElementById('play-btn');
-  let recordButton = document.getElementById('record-btn');
+  let playButton = document.getElementById("play-btn");
+  let recordButton = document.getElementById("record-btn");
+  if (recording.is) {
+    recording.end = millis();
+    recording.is = false;
+    recordButton.style.backgroundColor = "#aaa";
+    return;
+  }
 
-  recordButton.style.backgroundColor = '#f00';
-  playButton.style.backgroundColor = '#aaa';
+  recordButton.style.backgroundColor = "#f00";
+  playButton.style.backgroundColor = "#aaa";
   playback.is = false;
   let time = millis();
   recording = {
@@ -91,11 +97,19 @@ function record() {
   }
 }
 function play() {
-  let playButton = document.getElementById('play-btn');
-  let recordButton = document.getElementById('record-btn');
+  let playButton = document.getElementById("play-btn");
+  let recordButton = document.getElementById("record-btn");
+  if (playback.is) {
+    playback.end = millis();
+    playback.is = false;
+    playButton.style.backgroundColor = "#aaa";
+    console.log("end play");
+    return false;
+  }
+  console.log("start play");
 
-  playButton.style.backgroundColor = '#0f0';
-  recordButton.style.backgroundColor = '#aaa';
+  playButton.style.backgroundColor = "#0f0";
+  recordButton.style.backgroundColor = "#aaa";
   recording.is = false;
   let time = millis();
   playback = {
@@ -106,25 +120,13 @@ function play() {
 }
 
 function keyPressed() {
-  let playButton = document.getElementById('play-btn');
-  let recordButton = document.getElementById('record-btn');
+  let playButton = document.getElementById("play-btn");
+  let recordButton = document.getElementById("record-btn");
   if (key === "Shift") {
-    if (recording.is) {
-      recording.end = millis();
-      recording.is = false;
-      recordButton.style.backgroundColor = '#aaa';
-    } else {
-      record();
-    }
+    record();
   }
   if (key === "Enter") {
-    if (playback.is) {
-      playback.end = millis();
-      playback.is = false;
-      playButton.style.backgroundColor = '#aaa';
-    } else {
-      play();
-    }
+    play();
   }
   getAudioContext().resume();
   keysDown.push(key);
@@ -136,3 +138,10 @@ function keyReleased() {
     }
   }
 }
+
+document.getElementById("play-btn").addEventListener("click", function () {
+  play();
+});
+document.getElementById("record-btn").addEventListener("click", function () {
+  record();
+});
