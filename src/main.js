@@ -120,14 +120,6 @@ function play() {
 }
 
 function keyPressed() {
-  let playButton = document.getElementById("play-btn");
-  let recordButton = document.getElementById("record-btn");
-  if (key === "Shift") {
-    record();
-  }
-  if (key === "Enter") {
-    play();
-  }
   getAudioContext().resume();
   keysDown.push(key);
 }
